@@ -10,7 +10,7 @@ const YoutubeLiveV3 = React.lazy(() => import('./YoutubeLiveV3'));
 const App = () => {
   const { setPathPageView, setIdentity, setTrackPageView } = useTrackingCode();
 
-  setPathPageView("/");
+  setPathPageView("/yt-react-demo");
 
   setIdentity("Nopparat.M@yuanta.co.th");
 
