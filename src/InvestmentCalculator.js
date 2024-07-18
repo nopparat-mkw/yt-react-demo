@@ -131,6 +131,7 @@ const InvestmentCalculator = () => {
       </Space>
 
       <Table
+        rowKey={(tableData) => tableData.year}
         columns={columns}
         dataSource={tableData}
         pagination={false}
