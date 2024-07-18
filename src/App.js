@@ -1,25 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { Suspense } from 'react';
+import { Tabs, Spin } from 'antd';
+import InvestmentCalculator from './InvestmentCalculator';
+import { useTrackingCode } from "react-hubspot-tracking-code-hook";
 
-function App() {
+const { TabPane } = Tabs;
+const YoutubeLiveV3 = React.lazy(() => import('./YoutubeLiveV3'));
+
+const App = () => {
+  const { setPathPageView, setIdentity, setTrackPageView } = useTrackingCode();
+
+  setPathPageView("/");
+
+  setIdentity("Nopparat.M@yuanta.co.th");
+
+  setTrackPageView();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+      <Tabs defaultActiveKey="1" style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <TabPane tab="Investment Calculator" key="1">
+            <InvestmentCalculator />
+          </TabPane>
+          <TabPane tab="Youtube Live" key="2">
+            <Suspense fallback={<Spin size="large" />}>
+              <YoutubeLiveV3 />
+            </Suspense>
+          </TabPane>
+        </Tabs>
     </div>
   );
-}
+};
 
 export default App;
